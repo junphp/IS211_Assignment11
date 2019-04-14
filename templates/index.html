@@ -1,0 +1,66 @@
+<!doctype html>
+<head>
+    <title>TO DO LIST</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script type="text/javascript">
+        function startFunction() {
+            document.getElementById("task").focus()
+        }
+    </script>
+</head>
+<body onload="startFunction()">
+    <div class="container">
+        <div class="header">
+        <form action="/submit" method="post" name="todoform">
+                <h2 style="margin:5px;text-align:center;">My To Do List</h2>
+                <div class="col1">
+                    <input id="task" name="task" placeholder="Task..." style="width:96%">
+                </div>
+                <div class="col1">
+                    <input id="email" name="email" placeholder="Email" style="width:96%">
+                </div>
+                <div class="col1">
+                    <select id="priority" name="priority" style="width:100%; margin: 0px auto;">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+                <button type="submit" class="addBtn">Add To Do Item</button>
+        </form>
+        <form action="/clear" method="post">
+            <button type="submit" onclick="newElement()" class="addBtn2">Clear</button>
+        </form>
+        <form action="/save" method="post">
+            <button type="submit" onclick="newElement()" class="addBtn2">Save</button>
+        </form>
+        </div>
+        {% if error_flg == 't' %}
+        <div class="alert">email is invalid, Please try again</div>
+        {% endif %}
+        {% if error_flg == 'c' %}
+        <div class="alert">To Do List can not clear, Please try again</div>
+        {% endif %}
+        {% if error_flg == 's' %}
+        <div class="alert">To do List has been saved.</div>
+        {% endif %}
+        <ul>
+        {% for todo in todo_list %}
+        <li style="width:100%">
+            <div style="width:100%;">
+                Priority: {{ todo['priority'] }} | Email: {{ todo['email'] }}
+            </div>
+            <div style="width:100%;">
+                To Do: {{ todo['task'] }}
+            </div>
+            <div style="width:100%;">
+                <form action="/delete" method="post">
+                    <input  type="hidden" name="todoid" value="{{ todo['id'] }}">
+                    <button type="submit" onclick="newElement()" class="addBtn">Delete</button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+        </ul>
+    </div>
+</body>

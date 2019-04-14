@@ -1,0 +1,42 @@
+(lp0
+(dp1
+S'priority'
+p2
+VLow
+p3
+sS'task'
+p4
+Vdo assignment 11
+p5
+sS'id'
+p6
+I0
+sS'email'
+p7
+Vjun@cuny.edu
+p8
+sa(dp9
+g2
+VMedium
+p10
+sg4
+Vlearning python
+p11
+sg6
+I1
+sg7
+Van@cuny.edu
+p12
+sa(dp13
+g2
+VHigh
+p14
+sg4
+Vtest flask
+p15
+sg6
+I2
+sg7
+Vglen@cuny.edu
+p16
+sa.
